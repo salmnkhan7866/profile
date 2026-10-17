@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Salmankhan Desai – Cloud & Full-Stack Developer</title>
+    <meta name="description"
+        content="Portfolio of Salmankhan Desai, MCA student building cloud-native, full-stack applications.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+    <style>
+        :root {
+            --bg: #0b1630;
+            --bg2: #12214a;
+            --card: #15265a;
+            --fg: #eaf2ff;
+            --mut: #9db2d9;
+            --line: rgba(143, 211, 255, .18);
+            --sky: #8fd3ff;
+            --sun: #ffb84d;
+            --ok: #5ee6a8;
+            --btnfg: #0b1630;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px)
+        }
+
+        @media (prefers-color-scheme:light) {
+            :root:not([data-theme="dark"]) {
+                --bg: #f1f6ff;
+                --bg2: #e3edff;
+                --card: #fff;
+                --fg: #0b1630;
+                --mut: #4a5d86;
+                --line: rgba(11, 22, 48, .14);
+                --sky: #1d5fd1;
+                --sun: #c77700;
+                --ok: #0b8a57;
+                --btnfg: #fff
+            }
+        }
+
+        :root[data-theme="light"] {
+            --bg: #f1f6ff;
+            --bg2: #e3edff;
+            --card: #fff;
+            --fg: #0b1630;
+            --mut: #4a5d86;
+            --line: rgba(11, 22, 48, .14);
+            --sky: #1d5fd1;
+            --sun: #c77700;
+            --ok: #0b8a57;
+            --btnfg: #fff
+        }
+
+        :root[data-theme="dark"] {
+            --bg: #0b1630;
+            --bg2: #12214a;
+            --card: #15265a;
+            --fg: #eaf2ff;
+            --mut: #9db2d9;
+            --line: rgba(143, 211, 255, .18);
+            --sky: #8fd3ff;
+            --sun: #ffb84d;
+            --ok: #5ee6a8;
+            --btnfg: #0b1630
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 76px)
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--fg);
+            font-family: 'DM Sans', system-ui, sans-serif;
+            line-height: 1.65;
+            overflow-x: hidden
+        }
+
+        .d {
+            font-family: 'Bricolage Grotesque', 'DM Sans', system-ui, sans-serif;
+            letter-spacing: -.02em;
+            line-height: 1.02
+        }
+
+        .m {
+            font-family: 'DM Mono', ui-monospace, monospace
+        }
+
+        a {
+            color: inherit
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--sun);
+            outline-offset: 3px
+        }
+
+        #glow {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background: radial-gradient(500px circle at var(--x, 70%) var(--y, 20%), rgba(143, 211, 255, .12), transparent 60%)
+        }
+
+        header.nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 40;
+            padding-top: env(safe-area-inset-top, 0px);
+            background: color-mix(in srgb, var(--bg) 80%, transparent);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line)
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .8rem 1.4rem;
+            border-radius: 999px;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1.5px solid var(--sky);
+            transition: transform .2s, background .2s, color .2s;
+            text-decoration: none;
+            font-size: .95rem
+        }
+
+        .btn:hover {
+            transform: translateY(-2px)
+        }
+
+        .btn.p {
+            background: var(--sun);
+            border-color: var(--sun);
+            color: #1a1000
+        }
+
+        .btn.g {
+            background: transparent;
+            color: var(--fg)
+        }
+
+        .btn.g:hover {
+            background: var(--sky);
+            color: var(--btnfg)
+        }
+
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 5.5rem 1.25rem
+        }
+
+        .wrap {
+            max-width: 1080px;
+            margin: 0 auto
+        }
+
+        h2.d {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            margin: 0 0 2rem
+        }
+
+        .panel {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 22px
+        }
+
+        /* pipeline */
+        .pipe {
+            padding: 1.2rem 1.3rem;
+            font-size: .82rem
+        }
+
+        .stage {
+            display: flex;
+            align-items: center;
+            gap: .7rem;
+            padding: .55rem 0;
+            opacity: .35;
+            transition: opacity .4s
+        }
+
+        .stage.on {
+            opacity: 1
+        }
+
+        .dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 2px solid var(--mut);
+            flex: none;
+            transition: .3s
+        }
+
+        .stage.run .dot {
+            border-color: var(--sun);
+            border-top-color: transparent;
+            animation: sp .7s linear infinite
+        }
+
+        .stage.ok .dot {
+            background: var(--ok);
+            border-color: var(--ok)
+        }
+
+        .stage.ok .st {
+            color: var(--ok)
+        }
+
+        .st {
+            margin-left: auto;
+            color: var(--mut)
+        }
+
+        @keyframes sp {
+            to {
+                transform: rotate(360deg)
+            }
+        }
+
+        .bar {
+            height: 4px;
+            border-radius: 4px;
+            background: var(--line);
+            overflow: hidden;
+            margin-top: .7rem
+        }
+
+        .bar i {
+            display: block;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--sky), var(--sun));
+            transition: width .6s
+        }
+
+        .log {
+            min-height: 3.2em;
+            color: var(--mut);
+            margin-top: .8rem
+        }
+
+        /* avatar */
+        .av {
+            width: 132px;
+            height: 132px;
+            border-radius: 50%;
+            position: relative;
+            cursor: pointer;
+            flex: none
+        }
+
+        .av::before {
+            content: "";
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            background: conic-gradient(var(--sun), var(--sky), var(--sun));
+            animation: sp 8s linear infinite
+        }
+
+        .av .in {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            background: var(--bg2);
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            border: 4px solid var(--bg)
+        }
+
+        .av img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        .av:hover .tip {
+            opacity: 1
+        }
+
+        .tip {
+            position: absolute;
+            left: 50%;
+            bottom: -30px;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: .7rem;
+            opacity: 0;
+            transition: .2s;
+            color: var(--mut)
+        }
+
+        /* chips */
+        .chip {
+            padding: .45rem 1rem;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--fg);
+            cursor: pointer;
+            font: inherit;
+            font-size: .88rem;
+            transition: .2s
+        }
+
+        .chip.on,
+        .chip:hover {
+            background: var(--sky);
+            color: var(--btnfg);
+            border-color: var(--sky)
+        }
+
+        .sk {
+            padding: .5rem .95rem;
+            border-radius: 12px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            font-size: .92rem;
+            transition: transform .2s, border-color .2s
+        }
+
+        .sk:hover {
+            transform: translateY(-3px);
+            border-color: var(--sun)
+        }
+
+        .sk.hide {
+            display: none
+        }
+
+        /* timeline */
+        .tl {
+            border-left: 2px dashed var(--line);
+            margin-left: .6rem;
+            padding-left: 1.6rem
+        }
+
+        .tl>div {
+            position: relative;
+            padding-bottom: 2rem
+        }
+
+        .tl>div::before {
+            content: "";
+            position: absolute;
+            left: calc(-1.6rem - 7px);
+            top: .45rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--sun);
+            box-shadow: 0 0 0 5px var(--bg)
+        }
+
+        /* projects */
+        .proj {
+            padding: 1.5rem;
+            transition: transform .25s, border-color .25s;
+            cursor: pointer;
+            text-align: left;
+            width: 100%;
+            color: inherit;
+            font: inherit
+        }
+
+        .proj:hover {
+            border-color: var(--sun)
+        }
+
+        .proj .more {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows .35s
+        }
+
+        .proj .more>div {
+            overflow: hidden
+        }
+
+        .proj[aria-expanded="true"] .more {
+            grid-template-rows: 1fr
+        }
+
+        .proj[aria-expanded="true"] .pl {
+            transform: rotate(45deg)
+        }
+
+        .pl {
+            transition: transform .25s;
+            font-size: 1.6rem;
+            line-height: 1;
+            color: var(--sun)
+        }
+
+        .tag {
+            font-size: .74rem;
+            padding: .2rem .6rem;
+            border-radius: 8px;
+            background: var(--bg2);
+            color: var(--sky)
+        }
+
+        .hl {
+            display: inline-block;
+            padding: .9rem 1.2rem;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            text-decoration: none;
+            transition: .2s;
+            background: var(--card)
+        }
+
+        .hl:hover {
+            border-color: var(--sun);
+            transform: translateY(-3px)
+        }
+
+        #resume {
+            display: none
+        }
+
+        @media print {
+            body>*:not(#resume) {
+                display: none !important
+            }
+
+            #resume {
+                display: block;
+                color: #000;
+                background: #fff;
+                font-family: Arial, sans-serif;
+                font-size: 11pt;
+                padding: 0;
+                line-height: 1.4
+            }
+
+            #resume h1 {
+                font-size: 22pt;
+                margin: 0
+            }
+
+            #resume h3 {
+                border-bottom: 1px solid #000;
+                margin: 12pt 0 4pt;
+                font-size: 12pt
+            }
+
+            #resume ul {
+                margin: 2pt 0;
+                padding-left: 16pt
+            }
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+            * {
+                animation: none !important;
+                transition: none !important
+            }
+
+            html {
+                scroll-behavior: auto
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="glow"></div>
+
+    <header class="nav">
+        <div class="wrap flex items-center justify-between" style="padding:.8rem 1.25rem">
+            <a href="#top" class="d text-xl font-extrabold" aria-label="Home">sd<span
+                    style="color:var(--sun)">.</span>dev</a>
+            <nav class="hidden md:flex gap-6 text-sm" aria-label="Main">
+                <a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a
+                    href="#projects">Projects</a><a href="#certs">Certifications</a><a href="#education">Education</a><a
+                    href="#contact">Contact</a>
+            </nav>
+            <div class="flex items-center gap-2">
+                <button id="theme" class="chip" aria-label="Toggle light and dark theme">Theme</button>
+                <button id="burger" class="chip md:hidden" aria-label="Open menu" aria-expanded="false">Menu</button>
+            </div>
+        </div>
+        <nav id="mnav" class="hidden md:hidden flex-col gap-3 px-5 pb-4 text-base" aria-label="Mobile">
+            <a href="#about">About</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a
+                href="#projects">Projects</a><a href="#certs">Certifications</a><a href="#education">Education</a><a
+                href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main id="top">
+        <section style="padding-top:8rem;min-height:100vh" class="flex items-center">
+            <div class="wrap grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="flex items-center gap-5 mb-8">
+                        <label class="av" title="Click to add your photo">
+                            <span class="in"><span class="d text-4xl font-extrabold" id="mono"
+                                    style="color:var(--sun)">SD</span><img src="https://portfolio338.s3.eu-north-1.amazonaws.com/WhatsApp+Image+2026-04-16+at+10.03.47+PM.jpeg" id="photo" alt="Salmankhan Desai"
+                                    hidden></span>
+                        </label>
+                        <p class="m text-sm" style="color:var(--mut)">Belgaum, Karnataka<br>MCA 2027 · open to roles</p>
+                    </div>
+                    <h1 class="d font-extrabold" style="font-size:clamp(2.5rem,7vw,4.8rem)">Salmankhan Desai</h1>
+                    <p class="mt-6 max-w-lg" style="color:var(--mut)">MCA student focused on full-stack MERN
+                        development, REST APIs and DevOps automation with Docker, Jenkins, AWS and Google Cloud.</p>
+                    <div class="flex flex-wrap gap-3 mt-8">
+                        <button class="btn p" id="dl">Download Resume</button>
+                        <a class="btn g" href="#contact">Contact Me</a>
+                    </div>
+                </div>
+                <div class="panel pipe m" aria-live="polite">
+                    <div class="flex justify-between mb-2"><span>salman/portfolio · main</span><button id="replay"
+                            class="chip" style="padding:.15rem .7rem;font-size:.75rem">Run again</button></div>
+                    <div class="stage" data-l="Compiling Java, Node.js and React sources"><i class="dot"></i>Build<span
+                            class="st">queued</span></div>
+                    <div class="stage" data-l="Postman collections hit the REST APIs"><i class="dot"></i>Test APIs<span
+                            class="st">queued</span></div>
+                    <div class="stage" data-l="Docker image built, same environment everywhere"><i
+                            class="dot"></i>Containerize<span class="st">queued</span></div>
+                    <div class="stage" data-l="Jenkins pipeline pushes to the cloud"><i class="dot"></i>Deploy<span
+                            class="st">queued</span></div>
+                    <div class="bar"><i id="prog"></i></div>
+                    <div class="log" id="log">Waiting for commit…</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" style="background:var(--bg2)">
+            <div class="wrap grid md:grid-cols-5 gap-10">
+                <h2 class="d md:col-span-2">About me</h2>
+                <div class="md:col-span-3 space-y-4" style="color:var(--mut);font-size:1.05rem">
+                    <p>I'm a Master of Computer Applications student (graduating 2027) with a background in cloud
+                        computing, full-stack development, software engineering and data analytics.</p>
+                    <p>I like building scalable, cloud-native systems: designing RESTful APIs, managing data in MySQL,
+                        MongoDB and PostgreSQL, and automating delivery with Docker and Jenkins.</p>
+                    <p>I'm a proactive problem solver looking for a high-impact engineering role where I can apply
+                        analytical skills and technical versatility.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="wrap">
+                <h2 class="d">Skills and tools</h2>
+                <div class="flex flex-wrap gap-2 mb-8" id="chips">
+                    <button class="chip on" data-f="all">All</button><button class="chip"
+                        data-f="lang">Languages</button><button class="chip" data-f="web">Full-stack</button><button
+                        class="chip" data-f="cloud">Cloud and DevOps</button><button class="chip"
+                        data-f="data">Data</button><button class="chip" data-f="db">Databases</button><button
+                        class="chip" data-f="cs">CS fundamentals</button>
+                </div>
+                <div class="flex flex-wrap gap-3" id="skl"></div>
+            </div>
+        </section>
+
+        <section id="experience" style="background:var(--bg2)">
+            <div class="wrap">
+                <h2 class="d">Experience</h2>
+                <div class="tl max-w-2xl">
+                    <div>
+                        <h3 class="d text-2xl font-extrabold">Hands-on cloud and DevOps projects</h3>
+                        <p class="m text-sm" style="color:var(--sky)">2024 – present</p>
+                        <p style="color:var(--mut)">Containerized applications with Docker, automated deployment with
+                            Jenkins CI/CD, and built REST APIs and cloud storage systems on Google Cloud.</p>
+                    </div>
+                    <div>
+                        <h3 class="d text-2xl font-extrabold">Full-stack and data practice</h3>
+                        <p class="m text-sm" style="color:var(--sky)">2023 – present</p>
+                        <p style="color:var(--mut)">Built a Java desktop app on MySQL and a facial-recognition
+                            attendance system on MongoDB and OpenCV.</p>
+                    </div>
+                    <div>
+                        <h3 class="d text-2xl font-extrabold">Next: first professional role</h3>
+                        <p class="m text-sm" style="color:var(--sky)">Open to internships and entry-level roles</p>
+                        <p style="color:var(--mut)">Cloud, full-stack, DevOps or data engineering. <a href="#contact"
+                                style="color:var(--sun);font-weight:700">Get in touch</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="wrap">
+                <h2 class="d">Projects</h2>
+                <div class="grid md:grid-cols-2 gap-5" id="pj"></div>
+            </div>
+        </section>
+
+        <section id="certs" style="background:var(--bg2)">
+            <div class="wrap">
+                <h2 class="d">Certifications</h2>
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div class="panel p-5"><b>Oracle Cloud Infrastructure 2025 Foundations Associate</b>
+                        <p class="m text-sm" style="color:var(--sky)">1Z0-1085-25</p>
+                    </div>
+                    <div class="panel p-5"><b>AWS Cloud Practitioner</b>
+                        <p class="m text-sm" style="color:var(--mut)">Trained</p>
+                    </div>
+                    <div class="panel p-5"><b>Google AI Essentials</b></div>
+                    <div class="panel p-5"><b>Google Cloud Computing Foundations</b></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <div class="wrap">
+                <h2 class="d">Education</h2>
+                <div class="tl max-w-2xl">
+                    <div>
+                        <h3 class="d text-2xl font-extrabold">Master of Computer Applications</h3>
+                        <p style="color:var(--mut)">KLE Society's College of MCA RLSI, Belgaum</p>
+                        <p class="m text-sm" style="color:var(--sky)">Expected 2027 · CGPA 7.49</p>
+                    </div>
+                    <div>
+                        <h3 class="d text-2xl font-extrabold">Bachelor of Computer Applications</h3>
+                        <p style="color:var(--mut)">KLE Society's College of BCA RLSI, Belgaum</p>
+                        <p class="m text-sm" style="color:var(--sky)">Graduated 2024 · CGPA 6.17</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" style="background:var(--bg2)">
+            <div class="wrap">
+                <h2 class="d">Let's build something</h2>
+                <p class="max-w-lg mb-8" style="color:var(--mut)">Looking for a student engineer who can code,
+                    containerize and deploy? Reach out.</p>
+                <div class="flex flex-wrap gap-3">
+                    <a class="hl" href="mailto:desaisalman8@gmail.com"><b>Email</b><br><span class="m text-sm"
+                            style="color:var(--mut)">desaisalman8@gmail.com</span></a>
+                    <a class="hl" href="tel:+918431296149"><b>Phone</b><br><span class="m text-sm"
+                            style="color:var(--mut)">+91 84312 96149</span></a>
+                    <a class="hl" href="https://www.linkedin.com/in/salmankhan-desai" target="_blank"
+                        rel="noopener noreferrer"><b>LinkedIn</b><br><span class="m text-sm"
+                            style="color:var(--mut)">salmankhan-desai</span></a>
+                    <a class="hl" href="https://github.com/salmnkhan7866" target="_blank"
+                        rel="noopener noreferrer"><b>GitHub</b><br><span class="m text-sm"
+                            style="color:var(--mut)">salmnkhan7866</span></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="position:relative;z-index:1;border-top:1px solid var(--line);padding:2rem 1.25rem">
+        <div class="wrap flex flex-wrap justify-between gap-4 text-sm" style="color:var(--mut)">
+            <span class="d text-lg font-extrabold" style="color:var(--fg)">sd<span
+                    style="color:var(--sun)">.</span>dev</span>
+            <span>© <span id="yr"></span> Salmankhan Desai. Belgaum, India.</span>
+            <a href="#top" style="color:var(--sun)">Back to top</a>
+        </div>
+    </footer>
+
+    <div id="resume">
+        <h1>SALMANKHAN DESAI</h1>
+        <p>Belgaum, Karnataka, India | +91 8431296149 | desaisalman8@gmail.com<br>github.com/salmnkhan7866 |
+            linkedin.com/in/salmankhan-desai</p>
+        <h3>SUMMARY</h3>
+        <p>MCA 2027 student with a background in Cloud Computing, Full-Stack Development (MERN), Software Engineering
+            and Data Engineering/Analytics. Builds cloud-native architectures, RESTful APIs and data pipelines using
+            MySQL, MongoDB and PostgreSQL, with DevOps automation (Docker, Jenkins, AWS, GCP).</p>
+        <h3>TECHNICAL SKILLS</h3>
+        <ul id="rs"></ul>
+        <h3>EDUCATION</h3>
+        <ul>
+            <li><b>MCA</b>, KLE Society's College of MCA RLSI, Belgaum. Expected 2027. CGPA 7.17</li>
+            <li><b>BCA</b>, KLE Society's College of BCA RLSI, Belgaum. 2024. CGPA 6.17</li>
+        </ul>
+        <h3>PROJECTS</h3>
+        <ul id="rp"></ul>
+        <h3>CERTIFICATIONS</h3>
+        <ul>
+            <li>Oracle Cloud Infrastructure 2025 Foundations Associate (1Z0-1085-25)</li>
+            <li>AWS Cloud Practitioner Trained</li>
+            <li>Google AI Essentials</li>
+            <li>Google Cloud Computing Foundations</li>
+        </ul>
+    </div>
+
+    <script>
+        const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+        const skills = [
+            ["lang", "Java"], ["lang", "Python"], ["lang", "JavaScript (ES6+)"], ["lang", "SQL"], ["lang", "C"],
+            ["web", "React.js"], ["web", "Node.js"], ["web", "Express.js"], ["web", "REST APIs"], ["web", "HTML5 / CSS3"],
+            ["cloud", "Google Cloud Platform"], ["cloud", "AWS"], ["cloud", "Docker"], ["cloud", "Jenkins CI/CD"], ["cloud", "Linux"], ["cloud", "Postman"],
+            ["data", "SQL query optimization"], ["data", "Data pipelines"], ["data", "Big data concepts"], ["data", "Data visualization"], ["data", "Excel / Google Sheets"],
+            ["db", "MongoDB"], ["db", "MySQL"], ["db", "PostgreSQL"], ["db", "RDBMS"],
+            ["cs", "Data structures and algorithms"], ["cs", "OOP"], ["cs", "Operating systems"], ["cs", "Computer networks"], ["cs", "System design basics"]];
+        const projects = [
+            { t: "Portfolio Website", s: ["Docker", "Jenkins", "GitHub"], p: ["Built a personal portfolio website and pushed the source to GitHub.", "Containerized the app with Docker for consistent environments.", "Automated deployment with a Jenkins CI/CD pipeline."] },
+            { t: "Book Shop Management System", s: ["Java Swing", "MySQL"], p: ["Java desktop app supporting inventory management, customer records and secure authentication.", "Designed the database schema and implemented backend logic in Java and MySQL.", "Created a user-friendly interface with a secure login system."] },
+            { t: "Attendance Management System", s: ["Java", "MongoDB", "OpenCV"], p: ["Built with Java, MongoDB and OpenCV.", "Applied facial recognition for attendance.", "Reduced manual attendance effort."] },
+            { t: "Cloud File Management System", s: ["Google Cloud Storage", "Node.js", "REST"], p: ["Developed a file upload and download system on Google Cloud Storage.", "Applied authentication and file permissions.", "Built REST APIs with Node.js."] }];
+        $('#skl').innerHTML = skills.map(([c, n]) => `<span class="sk" data-c="${c}">${n}</span>`).join('');
+        $('#chips').onclick = e => { const b = e.target.closest('.chip'); if (!b) return; $$('#chips .chip').forEach(x => x.classList.toggle('on', x === b)); $$('.sk').forEach(s => s.classList.toggle('hide', b.dataset.f !== 'all' && s.dataset.c !== b.dataset.f)) };
+        $('#pj').innerHTML = projects.map(p => `<button class="panel proj" aria-expanded="false"><div class="flex justify-between items-start gap-3"><h3 class="d text-2xl font-extrabold">${p.t}</h3><span class="pl">+</span></div><div class="flex flex-wrap gap-2 mt-3">${p.s.map(x => `<span class="tag m">${x}</span>`).join('')}</div><div class="more"><div><ul class="mt-4 space-y-2 list-disc pl-5" style="color:var(--mut)">${p.p.map(x => `<li>${x}</li>`).join('')}</ul></div></div></button>`).join('');
+        $$('.proj').forEach(b => b.onclick = () => b.setAttribute('aria-expanded', b.getAttribute('aria-expanded') !== 'true'));
+        // resume print sheet
+        const names = { lang: "Languages", web: "Full-Stack (MERN)", cloud: "Cloud & DevOps", data: "Data Engineering & Analytics", db: "Databases", cs: "Core CS" };
+        $('#rs').innerHTML = Object.keys(names).map(k => `<li><b>${names[k]}:</b> ${skills.filter(s => s[0] === k).map(s => s[1]).join(', ')}</li>`).join('');
+        $('#rp').innerHTML = projects.map(p => `<li><b>${p.t}</b> (${p.s.join(', ')}): ${p.p.join(' ')}</li>`).join('');
+        $('#dl').onclick = () => window.print();
+        // pipeline: the page's one orchestrated moment
+        let timers = [];
+        function run() {
+            timers.forEach(clearTimeout); timers = [];
+            const st = $$('.stage'); st.forEach(s => { s.className = 'stage'; $('.st', s).textContent = 'queued' });
+            $('#prog').style.width = '0'; $('#log').textContent = 'Commit received. Starting pipeline…';
+            st.forEach((s, i) => {
+                timers.push(setTimeout(() => { s.classList.add('on', 'run'); $('.st', s).textContent = 'running'; $('#log').textContent = s.dataset.l }, i * 1100 + 400));
+                timers.push(setTimeout(() => { s.classList.remove('run'); s.classList.add('ok'); $('.st', s).textContent = 'passed'; $('#prog').style.width = ((i + 1) * 25) + '%' }, i * 1100 + 1250));
+            });
+            timers.push(setTimeout(() => { $('#log').textContent = 'Deployed. Welcome to the live site.' }, st.length * 1100 + 500));
+        }
+        $('#replay').onclick = run; run();
+        // theme + menu
+        const root = document.documentElement;
+        $('#theme').onclick = () => { const cur = root.dataset.theme || (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'); root.dataset.theme = cur === 'dark' ? 'light' : 'dark' };
+        const bg = $('#burger'), mn = $('#mnav');
+        bg.onclick = () => { const o = mn.classList.toggle('hidden'); mn.classList.toggle('flex', !o); bg.setAttribute('aria-expanded', String(!o)) };
+        $$('#mnav a').forEach(a => a.onclick = () => { mn.classList.add('hidden'); mn.classList.remove('flex'); bg.setAttribute('aria-expanded', 'false') });
+        // photo (kept in this browser session only)
+        $('#file').onchange = e => { const f = e.target.files[0]; if (!f) return; const r = new FileReader(); r.onload = () => { const i = $('#photo'); i.src = r.result; i.hidden = false; $('#mono').hidden = true }; r.readAsDataURL(f) };
+        // cursor glow
+        addEventListener('pointermove', e => { root.style.setProperty('--x', e.clientX + 'px'); root.style.setProperty('--y', e.clientY + 'px') }, { passive: true });
+        $('#yr').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>
